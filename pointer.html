@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pointer</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="css/pointer.css" type="text/css" />
+  </head>
+  <body>
+    <div class="header">
+      <!--? pointer to a single function -->
+      <div class="lesson-title text-center">
+        POINTER<br />/pointer to a single function/
+      </div>
+      <pre><code class="hljs" style="background:#FFFFFF;border-radius:8px"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-comment">// A normal function with an int parameter</span>
+<span class="hljs-comment">// and void return type</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fun</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span>
+</span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Value of a is %d\n"</span>, a);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-comment">// fun_ptr is a pointer to function fun()</span>
+	<span class="hljs-keyword">void</span> (*fun_ptr)(<span class="hljs-keyword">int</span>) = &amp;fun;
+
+	<span class="hljs-comment">/* The above line is equivalent of following two
+	void (*fun_ptr)(int);
+	fun_ptr = &amp;fun;
+	*/</span>
+
+	<span class="hljs-comment">// Invoking fun() using fun_ptr</span>
+	(*fun_ptr)(<span class="hljs-number">10</span>);
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+      <!--? pointer to multiple functions -->
+      <div class="lesson-title text-center">
+        POINTER<br />/pointer to multiple functions/
+      </div>
+      <pre><code class="hljs" style="background:#FFFFFF;border-radius:8px"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span>
+</span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Addition is %d\n"</span>, a+b);
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">subtract</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span>
+</span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Subtraction is %d\n"</span>, a-b);
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">multiply</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span>
+</span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Multiplication is %d\n"</span>, a*b);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-comment">// fun_ptr_arr is an array of function pointers</span>
+	<span class="hljs-keyword">void</span> (*fun_ptr_arr[])(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>) = {add, subtract, multiply};
+	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> ch, a = <span class="hljs-number">15</span>, b = <span class="hljs-number">10</span>;
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Enter Choice: 0 for add, 1 for subtract and 2 "</span>
+			<span class="hljs-string">"for multiply\n"</span>);
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;ch);
+
+	<span class="hljs-keyword">if</span> (ch &gt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+	(*fun_ptr_arr[ch])(a, b);
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+      <!--? function pointer return a function -->
+      <div class="lesson-title text-center">
+        POINTER<br />/function pointer return a function/
+      </div>
+      <pre><code class="hljs" style="background:#FFFFFF;border-radius:8px"><span class="hljs-comment">// A simple C program to show function pointers as parameter</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-comment">// Two simple functions</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fun1</span><span class="hljs-params">()</span> </span>{ <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Fun1\n"</span>); }
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fun2</span><span class="hljs-params">()</span> </span>{ <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Fun2\n"</span>); }
+
+<span class="hljs-comment">// A function that receives a simple function</span>
+<span class="hljs-comment">// as parameter and calls the function</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">wrapper</span><span class="hljs-params">(<span class="hljs-keyword">void</span> (*fun)())</span>
+</span>{
+	fun();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	wrapper(fun1);
+	wrapper(fun2);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+      <!--? function pointer : qsort()  -->
+      <div class="lesson-title text-center">
+        POINTER<br />/function pointer : qsort()/
+      </div>
+      <pre><code class="hljs" style="background:#FFFFFF;border-radius:8px"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *a, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *b)</span></span>{
+    <span class="hljs-keyword">return</span> ( *(<span class="hljs-keyword">int</span>*)a - *(<span class="hljs-keyword">int</span>*)b );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">int</span> size, a[<span class="hljs-number">10</span>];
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;size);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) {
+        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;a[i]);
+    }
+    qsort(a, size, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>), compare);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++ ) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d "</span>, a[i]);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
