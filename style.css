@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+/*! container */
+.container {
+  width: 300px;
+  height: 300px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: monospace;
+  border-radius: 40px;
+  position: relative;
+  left: 40%;
+  top: 100px;
+}
+.container a {
+  color: black;
+  text-decoration: none;
+}
+/*! pointer */
+.pointer {
+  animation: bounceInRight 1s;
+  position: absolute;
+  left: 700px;
+  top: 100px;
+  background-color: #ffca3a;
+  font-size: 50px;
+}
+/*! algorithm */
+.algorithm {
+  animation: bounceInLeft 1s;
+  position: absolute;
+  right: 800px;
+  top: 450px;
+  background-color: #8ac926;
+  font-size: 40px;
+}
+/*! git */
+.git {
+  animation: bounceInLeft 1s;
+  position: absolute;
+  left: 300px;
+  top: 50px;
+  background-color: #00a6ed;
+  font-size: 70px;
+}
+@media (max-width: 414px) {
+  .pointer {
+    position: absolute;
+    left: 50px;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+    font-size: 30px;
+  }
+  .algorithm {
+    position: absolute;
+    right: 20px;
+    top: 320px;
+    width: 230px;
+    height: 230px;
+    font-size: 30px;
+  }
+  .git {
+    position: absolute;
+    left: 20px;
+    top: 580px;
+    width: 230px;
+    height: 230px;
+    font-size: 60px;
+  }
+}
